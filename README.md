@@ -1,31 +1,4 @@
-# CoreUI PRO React Admin Template v4
-
-CoreUI is meant to be the UX game changer. Pure & transparent code is devoid of redundant components, so the app is light enough to offer ultimate user experience. This means mobile devices also, where the navigation is just as easy and intuitive as on a desktop or laptop. The CoreUI Layout API lets you customize your project for almost any device – be it Mobile, Web or WebApp – CoreUI covers them all!
-
-## Table of Contents
-
-* [Versions](#versions)
-* [Quick Start](#quick-start)
-* [Installation](#installation)
-* [Basic usage](#basic-usage)
-* [What's included](#whats-included)
-* [Documentation](#documentation)
-* [Versioning](#versioning)
-* [Creators](#creators)
-* [Community](#community)
-* [Copyright and License](#copyright-and-license)
-
-## Versions
-
-* [CoreUI Pro Bootstrap Admin Template](https://coreui.io/pro/)
-* [CoreUI Pro Angular Admin Template](https://coreui.io/pro/angular)
-* [CoreUI Pro React Admin Template](https://coreui.io/pro/react)
-* [CoreUI Pro Vue Admin Template](https://coreui.io/pro/vue)
-
-## Quick Start
-
-- [Download the latest release](https://github.com/coreui/coreui-pro-react-admin-template/archive/refs/heads/main.zip)
-- Clone the repo: `git clone https://github.com/coreui/coreui-pro-react-admin-template.git`
+# FAS using CoreUI PRO React Admin Template v4
 
 ### Instalation
 
@@ -107,39 +80,3 @@ coreui-pro-react-admin-template
 │
 └── package.json
 ```
-
-## Documentation
-
-The documentation for the CoreUI Admin Template is hosted at our website [CoreUI for React](https://coreui.io/react/)
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, CoreUI Free Admin Template is maintained under [the Semantic Versioning guidelines](http://semver.org/).
-
-See [the Releases section of our project](https://github.com/coreui/coreui-pro-react-admin-template/releases) for changelogs for each release version.
-
-## Creators
-
-**Łukasz Holeczek**
-* <https://twitter.com/lukaszholeczek>
-* <https://github.com/mrholek>
-* <https://github.com/coreui>
-
-**CoreUI team**
-* https://github.com/orgs/coreui/people
-
-## Community
-
-Get updates on CoreUI's development and chat with the project maintainers and community members.
-
-- Follow [@core_ui on Twitter](https://twitter.com/core_ui).
-- Read and subscribe to [CoreUI Blog](https://blog.coreui.ui/).
-
-## Copyright and License
-
-copyright 2022 creativeLabs Łukasz Holeczek.   
-
-You must have a valid license purchased to legally use this product for
-your projects.
-
-You can buy a license on our website https://coreui.io
