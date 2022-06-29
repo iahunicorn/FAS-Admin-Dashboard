@@ -1,19 +1,21 @@
-import { createStore } from 'redux'
+import { configureStore } from "@reduxjs/toolkit";
 
-const initialState = {
-  sidebarShow: true,
-  asideShow: false,
-  theme: 'default',
-}
+import changeState from "./store/coreuistate/changeState";
+import customerSlice from "./store/features/customer/customerSlice";
+import vendorSlice from "./store/features/vendor/vendorSlice";
+import productSlice from "./store/features/product/productSlice";
+import companySlice from "./store/features/company/companySlice";
+import userSlice from "./store/features/user/userSlice";
 
-const changeState = (state = initialState, { type, ...rest }) => {
-  switch (type) {
-    case 'set':
-      return { ...state, ...rest }
-    default:
-      return state
+const store = configureStore({
+  reducer: {
+    coreuistate: changeState,
+    customerDim: customerSlice,
+    vendorDim: vendorSlice,
+    productDim: productSlice,
+    companyDim: companySlice,
+    userDim: userSlice,
   }
-}
+})
 
-const store = createStore(changeState)
-export default store
+export default store;

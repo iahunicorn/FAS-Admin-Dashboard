@@ -36,7 +36,7 @@ import avatar8 from './../assets/images/avatars/8.jpg'
 
 const AppAside = () => {
   const dispatch = useDispatch()
-  const asideShow = useSelector((state) => state.asideShow)
+  const asideShow = useSelector((state) => state.coreuistate.asideShow)
 
   const [activeKey, setActiveKey] = useState(1)
 

@@ -36,24 +36,6 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Users',
-    to: '/apps/invoicing',
-    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'All Users',
-        to: '/dims/user',
-      },
-      {
-        component: CNavItem,
-        name: 'Add New User',
-        to: '/forms/fas-dims/user',
-      },
-    ]
-  },
-  {
-    component: CNavGroup,
     name: 'Company',
     icon: <CIcon icon={cilMap} customClassName="nav-icon" />,
     to: '/dashboard',
@@ -61,12 +43,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'All Companies',
-        to: '/dims/company',
+        to: '/companies',
       },
       {
         component: CNavItem,
         name: 'Add New Company',
-        to: '/forms/fas-dims/company',
+        to: '/company/add',
       },
     ]
   },
@@ -79,12 +61,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'All Customers',
-        to: '/dims/customer',
+        to: '/customers',
       },
       {
         component: CNavItem,
         name: 'Add New Customer',
-        to: '/forms/fas-dims/customer',
+        to: '/customer/add',
       },
       {
         component: CNavItem,
@@ -102,12 +84,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'All Vendors',
-        to: '/dims/vendor',
+        to: '/vendors',
       },
       {
         component: CNavItem,
         name: 'Add New Vendor',
-        to: '/forms/fas-dims/vendor',
+        to: '/vendor/add',
       },
       {
         component: CNavItem,
@@ -125,12 +107,30 @@ const _nav = [
       {
         component: CNavItem,
         name: 'All Products',
-        to: '/dims/product',
+        to: '/products',
       },
       {
         component: CNavItem,
         name: 'Add New Product',
-        to: '/forms/fas-dims/product',
+        to: '/product/add',
+      },
+    ]
+  },
+  {
+    component: CNavGroup,
+    name: 'Users',
+    to: '/apps/invoicing',
+    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Users',
+        to: '/users',
+      },
+      {
+        component: CNavItem,
+        name: 'Add New User',
+        to: '/user/add',
       },
     ]
   },

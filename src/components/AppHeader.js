@@ -30,14 +30,14 @@ import { logo } from 'src/assets/brand/logo'
 const AppHeader = () => {
   const dispatch = useDispatch()
 
-  const theme = useSelector((state) => state.theme)
+  const theme = useSelector((state) => state.coreuistate.theme)
 
   theme === 'dark'
     ? document.body.classList.add('dark-theme')
     : document.body.classList.remove('dark-theme')
 
-  const sidebarShow = useSelector((state) => state.sidebarShow)
-  const asideShow = useSelector((state) => state.asideShow)
+  const sidebarShow = useSelector((state) => state.coreuistate.sidebarShow)
+  const asideShow = useSelector((state) => state.coreuistate.asideShow)
 
   return (
     <CHeader position="sticky" className="mb-4">

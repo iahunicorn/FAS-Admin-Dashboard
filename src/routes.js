@@ -61,24 +61,45 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Invoice = React.lazy(() => import('./views/apps/invoicing/Invoice'))
 
 //Forms - FAS
-const CustomerForm = React.lazy(() => import('./views/forms/fas-dims/Customer'))
-const VendorForm = React.lazy(() => import('./views/forms/fas-dims/Vendor'))
-const UserForm = React.lazy(() => import('./views/forms/fas-dims/User'))
-const CompanyForm = React.lazy(() => import('./views/forms/fas-dims/Company'))
-const ProductForm = React.lazy(() => import('./views/forms/fas-dims/Product'))
-const PurchaseOrderForm = React.lazy(() => import('./views/forms/fas-dims/PurchaseOrder'))
+const CustomerList = React.lazy(() => import('./views/dims/CustomerTable'))
+const CustomerAddForm = React.lazy(() => import('./store/features/customer/customerAdd'))
+const CustomerUpdateForm = React.lazy(() => import('./store/features/customer/customerUpdate'))
+const VendorList = React.lazy(() => import('./views/dims/VendorTable'))
+const VendorAddForm = React.lazy(() => import('./store/features/vendor/vendorAdd'))
+const VendorUpdateForm = React.lazy(() => import('./store/features/vendor/vendorUpdate'))
+const ProductList = React.lazy(() => import('./views/dims/ProductTable'))
+const ProductAddForm = React.lazy(() => import('./store/features/product/productAdd'))
+const ProductUpdateForm = React.lazy(() => import('./store/features/product/productUpdate'))
+const CompanyList = React.lazy(() => import('./views/dims/CompanyTable'))
+const CompanyAddForm = React.lazy(() => import('./store/features/company/companyAdd'))
+const CompanyUpdateForm = React.lazy(() => import('./store/features/company/companyUpdate'))
+const UserList = React.lazy(() => import('./views/dims/UserTable'))
+const UserAddForm = React.lazy(() => import('./store/features/user/userAdd'))
+const UserUpdateForm = React.lazy(() => import('./store/features/user/userUpdate'))
+
 
 //Tables - FAS
-const CustomerList = React.lazy(() => import('./views/dims/CustomerTable'))
-const VendorList = React.lazy(() => import('./views/dims/VendorTable'))
-const UserList = React.lazy(() => import('./views/dims/UserTable'))
-const CompanyList = React.lazy(() => import('./views/dims/CompanyTable'))
-const ProductList = React.lazy(() => import('./views/dims/ProductTable'))
 const PurchaseOrderList = React.lazy(() => import('./views/dims/PurchaseOrderTable'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/customers', name: 'All Customers', element: CustomerList },
+  { path: '/customer/add', name: 'Add New Customer', element: CustomerAddForm },
+  { path: '/customer/:customerid', exact: true, name: 'Update Customer', element: CustomerUpdateForm },
+  { path: '/vendors', name: 'All Vendors', element: VendorList },
+  { path: '/vendor/add', name: 'Add New Vendor', element: VendorAddForm },
+  { path: '/vendor/:vendorid', name: 'Update Vendor', element: VendorUpdateForm },
+  { path: '/products', name: 'All Products', element: ProductList },
+  { path: '/product/add', name: 'Add New Product', element: ProductAddForm },
+  { path: '/product/:productid', exact: true, name: 'Update Product', element: ProductUpdateForm },
+  { path: '/companies', name: 'All Companies', element: CompanyList },
+  { path: '/company/add', name: 'Add New Company', element: CompanyAddForm },
+  { path: '/company/:companyid', exact: true, name: 'Update Company', element: CompanyUpdateForm },
+  { path: '/users', name: 'All Users', element: UserList },
+  { path: '/user/add', name: 'Add New User', element: UserAddForm },
+  { path: '/user/:userid', exact: true, name: 'Update User', element: UserUpdateForm },
+  { path: '/dims/purchase-order', name: 'Purchase Order List', element: PurchaseOrderList},
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -134,18 +155,6 @@ const routes = [
   { path: '/apps/email/inbox', name: 'Inbox', exact: true },
   { path: '/apps/email/compose', name: 'Compose', exact: true },
   { path: '/apps/email/message', name: 'Message', exact: true },
-  { path: '/dims/customer', name: 'Customer List', element: CustomerList },
-  { path: '/dims/vendor', name: 'Vendor List', element: VendorList },
-  { path: '/dims/user', name: 'User List', element: UserList },
-  { path: '/dims/company', name: 'Company List', element: CompanyList },
-  { path: '/dims/product', name: 'Products List', element: ProductList },
-  { path: '/dims/purchase-order', name: 'Purchase Order List', element: PurchaseOrderList},
-  { path: '/forms/fas-dims/customer', name: 'Customer Form', element: CustomerForm },
-  { path: '/forms/fas-dims/vendor', name: 'Vendor Form', element: VendorForm },
-  { path: '/forms/fas-dims/user', name: 'User Form', element: UserForm },
-  { path: '/forms/fas-dims/product', name: 'Product Form', element: ProductForm },
-  { path: '/forms/fas-dims/purchase-order', name: 'Purchase Order Form', element: PurchaseOrderForm },
-  { path: '/forms/fas-dims/company', name: 'Company', element: CompanyForm },
 ]
 
 export default routes
