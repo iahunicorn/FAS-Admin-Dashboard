@@ -20,7 +20,6 @@ import {
 } from '@coreui/react-pro'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCustomerById } from 'src/store/features/customer/customerSlice';
-import { getCountries } from './../../common/actions'
 import { useParams } from 'react-router-dom';
 
 
@@ -30,8 +29,6 @@ const CustomerUpdate = () => {
   //Form Validation 
   const [customerName, setCustomerName] = useState();
   const [country, setCountry] = useState();
-
-
 
   const [validated, setValidated] = useState(false)
 
@@ -50,7 +47,7 @@ const CustomerUpdate = () => {
 
   //Dispatch Actions
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.customerDim.data);
+  const data = useSelector((state) => state.customer.data);
 
   useEffect(() => {
       dispatch(getCustomerById({ id: customerid }));

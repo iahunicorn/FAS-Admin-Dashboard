@@ -38,7 +38,7 @@ const UserUpdate = () => {
   }
 
   //Get router params
-  const { companyid } = useParams();
+  const { userid } = useParams();
 
   //Dispatch Actions
   const dispatch = useDispatch();

@@ -17,43 +17,39 @@ import {
   CHeaderText,
 } from '@coreui/react-pro'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCompanyById, createCompany, updateCompanyById } from 'src/store/features/company/companySlice';
-import { useParams } from 'react-router-dom';
-
+import { getCompanyById, selectAllCompanies } from 'src/store/features/company/companySlice';
+import { useParams, useNavigate } from 'react-router-dom'
 
 const CompanyUpdate = () => {
-  
-   //Form Validation 
-   const [validated, setValidated] = useState(false)
 
-   //Get router params
-   const { companyid } = useParams();
+  //Form Validation 
+  const [validated, setValidated] = useState(false)
 
-   //Dispatch Actions
-   const dispatch = useDispatch();
-   const data = useSelector((state) => state.companyDim.data);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    setValidated(true)
+  }
 
-   useEffect(() => {
-      dispatch(getCompanyById({id: companyid}));
-   },[]);
+  //Get router params
+  const { companyid } = useParams();
 
-   console.log(data)
-   console.log(companyid)
-   //console.log(JSON.stringify(companyid))
+  //Dispatch Actions
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
-   const handleSubmit = (event) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-         event.preventDefault();
-         dispatch(updateCompany({
-            company_name,
-            company_short_name,
-         }))
-         //event.stopPropagation();
-         
-      } 
-      setValidated(true);
-   }
+  const data = useSelector((state) => state.company.data);
+  const allCompanies = useSelector(selectAllCompanies)
+
+  useEffect(() => {
+      dispatch(getCompanyById({ id: companyid }));
+  },[]);
+
+  console.log( { companyid, allCompanies } )
+  console.log(JSON.stringify(data))
 
    //Set Fields
    const [company_name, setCompanyName] = useState('');
@@ -77,37 +73,9 @@ const CompanyUpdate = () => {
    const [contact_last_name, setContactLastName] = useState('');
    const [payment_terms, setPaymentTerms] = useState('');
    const [payment_mode, setPaymentMode] = useState('');
-   
-   /*dispatch(updateCompanyById( companyid, {
-   company_name,
-   company_short_name,
-   email,
-   phone_number,
-   mobile_number,
-   address1,
-   address1,
-   country_abbr,
-   city,
-   province,
-   post_code,
-   website,
-   tax_identification_number,
-   currency_code,
-   business_posting_group,
-   vat_posting_group,
-   customer_posting_group,
-   contact_first_name,
-   contact_last_name,
-   payment_terms,
-   payment_mode
-   }))
-   */
 
-   const handleChange = (event) => {
-      //alert(event.target.value);
-      console.log(event.target.value);
-   }
-
+   const onCompanyNameChanged = (e) => setCompanyName(e.target.value)
+   const onCompanyNameShortChanged = (e) => setCompanyShortName(e.target.value)
 
 
    return (
@@ -133,16 +101,11 @@ const CompanyUpdate = () => {
                />
             </CCol>
             <CCol md={6}>
-                  <input 
-                  value={data.company_name} 
-                  onChange={handleChange}></input>
-            
                <CFormInput
                   label="Company Name"
                   type="text"
                   id="company_name"
                   value={data.company_name}
-                  onChange={(event) => (delay ? setCompanyName(event) : onChange && onChange(event))}
                   delay={true}
                   feedbackValid="Looks good!"
                   required

@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { CSmartTable, CCard, CCardBody, CCardHeader, CCol, CRow, CBadge, CButton, CCollapse } from '@coreui/react-pro'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCompanies } from 'src/store/features/company/companySlice';
+import React, { useEffect, useState } from 'react';
+import { CSmartTable, CCard, CCardBody, CCardHeader, CCol, CRow, CBadge, CButton, CCollapse } from '@coreui/react-pro';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCompanies, selectAllCompanies } from 'src/store/features/company/companySlice';
 
 
 const CompanyTable = () => {
-
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.companyDim.data)
+  const data = useSelector((state) => state.company.data)
+  
+  const listComp = useSelector(selectAllCompanies)
+
+  console.log({listComp})
+
   useEffect(() => {
     dispatch(getCompanies())
-  }, [])
-
-  console.log(data);
+  },[])
 
   const [details, setDetails] = useState([])
   const columns = [
@@ -72,7 +74,7 @@ const CompanyTable = () => {
             footer
             items={data}
             itemsPerPageSelect
-            itemsPerPage={5}
+            itemsPerPage={10}
             pagination
             scopedColumns={{
               status: (item) => (
@@ -103,7 +105,7 @@ const CompanyTable = () => {
                     <CCardBody>
                       <h6>Contact Person: {item.contact_person_first_name} {item.contact_person_last_name}</h6>
                       <p className="text-muted">Last Updated: {item.date_updated}</p>
-                      <CButton size="sm" color="info" href={`/company/${item.company_id}`}>
+                      <CButton size="sm" color="info" key={item.company_id} href={`/company/${item.company_id}`}>
                         View / Update
                       </CButton>
                       <CButton size="sm" color="danger" className="ml-1" href={`/company/delete/${item.company_id}`}>

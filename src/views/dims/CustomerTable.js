@@ -7,7 +7,7 @@ import { getCustomers } from 'src/store/features/customer/customerSlice';
 const CustomerTable = () => {
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.customerDim.data)
+  const data = useSelector((state) => state.customer.data)
   useEffect(() => {
     dispatch(getCustomers())
   }, [])
@@ -72,7 +72,7 @@ const CustomerTable = () => {
             footer
             items={data}
             itemsPerPageSelect
-            itemsPerPage={5}
+            itemsPerPage={10}
             pagination
             scopedColumns={{
               status: (item) => (

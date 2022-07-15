@@ -7,7 +7,7 @@ import { getVendors } from 'src/store/features/vendor/vendorSlice';
 const VendorTable = () => {
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.vendorDim.data)
+  const data = useSelector((state) => state.vendor.data)
   useEffect(() => {
     dispatch(getVendors())
   }, [])
@@ -16,9 +16,9 @@ const VendorTable = () => {
 
   const [details, setDetails] = useState([])
   const columns = [
-    { key: 'vendor_name', _style: { width: '20%' }},
-    { key: 'company_id', sorter: false },
-    { key: 'email', sorter: false },
+    { key: 'vendor_id', _style: { width: '15%' }},
+    { key: 'vendor_name', _style: { width: '35%' }},
+    { key: 'email', sorter: false, _style: { width: '25%' }},
     { key: 'status', _style: { width: '20%' }},
     {
       key: 'show_details',
@@ -58,7 +58,7 @@ const VendorTable = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Customer</strong> <small>All Records</small>
+            <strong>Vendor</strong> <small>All Records</small>
             
           </CCardHeader>
           <CCardBody>

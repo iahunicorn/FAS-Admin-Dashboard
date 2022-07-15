@@ -71,6 +71,7 @@ const ProductList = React.lazy(() => import('./views/dims/ProductTable'))
 const ProductAddForm = React.lazy(() => import('./store/features/product/productAdd'))
 const ProductUpdateForm = React.lazy(() => import('./store/features/product/productUpdate'))
 const CompanyList = React.lazy(() => import('./views/dims/CompanyTable'))
+const CompanyListTest = React.lazy(() => import('./store/features/company/companyList'))
 const CompanyAddForm = React.lazy(() => import('./store/features/company/companyAdd'))
 const CompanyUpdateForm = React.lazy(() => import('./store/features/company/companyUpdate'))
 const UserList = React.lazy(() => import('./views/dims/UserTable'))
@@ -94,6 +95,7 @@ const routes = [
   { path: '/product/add', name: 'Add New Product', element: ProductAddForm },
   { path: '/product/:productid', exact: true, name: 'Update Product', element: ProductUpdateForm },
   { path: '/companies', name: 'All Companies', element: CompanyList },
+  { path: '/companies-test', name: 'Company List test', element: CompanyListTest },
   { path: '/company/add', name: 'Add New Company', element: CompanyAddForm },
   { path: '/company/:companyid', exact: true, name: 'Update Company', element: CompanyUpdateForm },
   { path: '/users', name: 'All Users', element: UserList },

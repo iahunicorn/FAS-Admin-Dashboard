@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { CSmartTable, CCard, CCardBody, CCardHeader, CCol, CRow, CBadge, CButton, CCollapse } from '@coreui/react-pro'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUsers } from 'src/store/features/user/userSlice';
+import { getUsers } from './../../store/features/user/userSlice';
 
 
 const UserTable = () => {
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.userDim.data)
+  const data = useSelector((state) => state.user.data)
   useEffect(() => {
     dispatch(getUsers())
   }, [])
@@ -18,9 +18,8 @@ const UserTable = () => {
   const columns = [
     { key: 'first_name', _style: { width: '20%' }},
     { key: 'last_name', sorter: false },
-    { key: 'location', sorter: false },
     { key: 'email', sorter: false },
-    { key: 'status', _style: { width: '20%' }, sorter: false, filter: false },
+    { key: 'status', _style: { width: '20%' }, sorter: true, filter: true },
     { key: 'show_details', label: 'Action', _style: { width: '1%' }, sorter: false, filter: false }
   ]
 
@@ -55,7 +54,7 @@ const UserTable = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Customer</strong> <small>All Records</small>
+            <strong>Users</strong> <small>All Records</small>
             
           </CCardHeader>
           <CCardBody>
@@ -69,7 +68,7 @@ const UserTable = () => {
             footer
             items={data}
             itemsPerPageSelect
-            itemsPerPage={5}
+            itemsPerPage={10}
             pagination
             scopedColumns={{
               status: (item) => (
@@ -112,7 +111,7 @@ const UserTable = () => {
               },
             }}
             selectable
-            sorterValue={{ column: 'vendor_name', state: 'asc' }}
+            sorterValue={{ column: 'first_name', state: 'asc' }}
             tableFilter
             tableHeadProps={{
               color: 'danger',

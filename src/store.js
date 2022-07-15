@@ -10,11 +10,11 @@ import userSlice from "./store/features/user/userSlice";
 const store = configureStore({
   reducer: {
     coreuistate: changeState,
-    customerDim: customerSlice,
-    vendorDim: vendorSlice,
-    productDim: productSlice,
-    companyDim: companySlice,
-    userDim: userSlice,
+    company: companySlice,
+    customer: customerSlice,
+    vendor: vendorSlice,
+    product: productSlice,
+    user: userSlice,
   }
 })
 

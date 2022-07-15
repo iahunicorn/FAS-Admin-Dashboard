@@ -17,24 +17,22 @@ import {
   CHeaderText,
 } from '@coreui/react-pro'
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 import { createCompany } from './../company/companySlice'
 import { useNavigate } from 'react-router-dom'
 
-const CompanyAdd = () => {
+const CompanyAdd2 = () => {
   
   //Get initial data
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSuccess = useSelector((state) => state.company.isSuccess)
   const companyData = useSelector((state) => state.company.data)
-  const [addRequestStatus, setAddRequestStatus] = useState(isSuccess)
-
-  console.log({ addRequestStatus, companyData })
+  const [addRequestStatus, setAddRequestStatus] = useState('idle')
 
   //console.log({ isSuccess, companyData })
 
   //Set Fields
-  const [companyId, setCompanyId] = useState('');
   const [company_name, setCompanyName] = useState('');
   const [company_short_name, setCompanyShortName] = useState('');
   const [email, setEmail] = useState('');
@@ -60,42 +58,54 @@ const CompanyAdd = () => {
 
   //Form Validation 
   const [validated, setValidated] = useState(false)
+
+  //Submit Form
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
+    alert('new '+ company_name +' added!')
+    navigate('/companies')
+  }
+
+  const onCompanyNameChanged = (e) => setCompanyName(e.target.value)
+  const onCompanyShortNameChanged = (e) => setCompanyShortName(e.target.value)
   
-  const canSave = [company_name, email].every(Boolean) && addRequestStatus === true;
+  const canSave = [company_name, email].every(Boolean) && addRequestStatus === 'idle';
   
   const onSavePostClicked = () => {  
     if (canSave) {
       try {
-        setAddRequestStatus(true)
-        dispatch(createCompany(
-          { 
-              company_name: company_name,
-              company_short_name: company_short_name,
-              email: email,
-              phone_number: phone_number,
-              mobile_number: mobile_number,
-              address1: address1,
-              address2: address2,
-              country_abbr: country_abbr,
-              city: city,
-              province: province,
-              post_code: post_code,
-              website: website,
-              tax_identification_number: tax_identification_number,
-              business_posting_group: business_posting_group,
-              vat_posting_group: vat_posting_group,
-              customer_posting_group: customer_posting_group,
-              contact_person_first_name: contact_first_name,
-              contact_person_last_name: contact_last_name,
-              payment_terms: payment_terms,
-              payment_mode: payment_mode,
-              status: 'active',
-              created_by: 'test',
-              updated_by: 'test',
-              date_created: new Date(),
-              date_updated: new Date(),
-           
-          })).unwrap()
+        setAddRequestStatus('pending')
+        dispatch(createCompany({
+          company_id: nanoid(),
+          company_name,
+          company_short_name,
+          email,
+          phone_number,
+          mobile_number,
+          address1,
+          address2,
+          country_abbr,
+          city,
+          province,
+          post_code,
+          website,
+          tax_identification_number,
+          business_posting_group,
+          vat_posting_group,
+          customer_posting_group,
+          contact_first_name,
+          contact_last_name,
+          payment_terms,
+          payment_mode,
+          created_by: 'test',
+          updated_by: 'test',
+          date_created: new Date(),
+          date_updated: new Date()})).unwrap()
 
           setCompanyName('')
           setCompanyShortName('')
@@ -121,21 +131,10 @@ const CompanyAdd = () => {
       } catch (err) {
         console.error('Failed to save the post', err)
       } finally {
-        setAddRequestStatus(false)
-        
+        setAddRequestStatus('idle')
+        navigate('/companies')
       }
     }
-  }
-
-  //Submit Form
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    setValidated(true);
-    navigate(`/companies`)
   }
 
   return (
@@ -146,18 +145,14 @@ const CompanyAdd = () => {
             <strong>Add New Company</strong> <small></small>
           </CCardHeader>
           <CCardBody>
-            <CForm className="row g-3 needs-validation" 
-              noValidate
-              validated={validated}
-              onSubmit={handleSubmit}
-              >
+            <CForm className="row g-3 needs-validation" onSubmit={onSavePostClicked}>
               <CCol md={8}>
                 <CFormInput
                   label="Company Name"
                   type="text"
                   id="company_name"
                   feedbackValid="Looks good!"
-                  onChange={(e) => setCompanyName(e.target.value)}
+                  onChange={onCompanyNameChanged}
                   required
                 />
               </CCol>
@@ -166,7 +161,7 @@ const CompanyAdd = () => {
                   label="Company Short Name"
                   type="text"
                   id="company_short_name"
-                  onChange={(e) => setCompanyShortName(e.target.value)}
+                  onChange={onCompanyShortNameChanged}
                 />
               </CCol>
               <CCol md={4}>
@@ -289,6 +284,7 @@ const CompanyAdd = () => {
                   type="text"
                   id="business_posting_group"
                   onChange={(e) => setBusinessPostingGroup(e.target.value)}
+                  required
                 />
               </CCol>
               <CCol md={4}>
@@ -297,6 +293,7 @@ const CompanyAdd = () => {
                   type="text"
                   id="vat_posting_group"
                   onChange={(e) => setVatPostingGroup(e.target.value)}
+                  required
                 />
               </CCol>
               <CCol md={4}>
@@ -305,6 +302,7 @@ const CompanyAdd = () => {
                   type="text"
                   id="customer_postingg_group"
                   onChange={(e) => setCustomerPostingGroup(e.target.value)}
+                  required
                 />
               </CCol>
               <CCol md={12}>
@@ -341,7 +339,7 @@ const CompanyAdd = () => {
                 <CButton 
                   color="primary" 
                   type="submit"
-                  onClick={onSavePostClicked}>
+                  >
                   Submit Form
                 </CButton>
               </CCol>
@@ -353,4 +351,4 @@ const CompanyAdd = () => {
   )
 }
 
-export default CompanyAdd
+export default CompanyAdd2
