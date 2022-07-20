@@ -92,7 +92,7 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [createUser.fulfilled]: (state, { payload } ) => {
-      state.data = [payload]
+      state.data = [payload];
       state.isSuccess = true;
     },
     [createUser.rejected]: (state, { payload } ) => {

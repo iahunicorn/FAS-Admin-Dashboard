@@ -89,7 +89,7 @@ const productSlice = createSlice({
       state.isLoading = true;
     },
     [createProduct.fulfilled]: (state, { payload }) => {
-      state.data = [payload]
+      state.data = [payload];
       state.isSuccess = true;
     },
     [createProduct.rejected]: (state, { payload }) => {
@@ -101,7 +101,7 @@ const productSlice = createSlice({
       state.isLoading = true;
     },
     [updateProduct.fulfilled]: (state, { payload }) => {
-      state.data = [payload]
+      state.data = [payload];
       state.isSuccess = true;
     },
     [updateProduct.rejected]: (state, { payload } ) => {

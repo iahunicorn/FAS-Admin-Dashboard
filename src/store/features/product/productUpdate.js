@@ -78,7 +78,7 @@ console.log(JSON.stringify(productid))
   //Form Validation 
   const [validated, setValidated] = useState(false)
   
-  const canSave = [product_name, company_id, sku].every(Boolean) && addRequestStatus === true;
+  const canSave = [product_name, category, sku].every(Boolean) && addRequestStatus === true;
   
   const onSavePostClicked = () => {  
     if (canSave) {
@@ -456,7 +456,9 @@ console.log(JSON.stringify(productid))
              <CCol xs={12}>
                 <CButton 
                   color="primary" 
-                  type="submit">
+                  type="submit"
+                  onClick={onSavePostClicked}
+                >
                   Update
                 </CButton>
               </CCol>

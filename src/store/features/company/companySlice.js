@@ -92,7 +92,7 @@ const companySlice = createSlice({
       state.isLoading = true;
     },
     [createCompany.fulfilled]: (state, { payload } ) => {
-      state.data = [payload]
+      state.data = [payload];
       state.isSuccess = true;
     },
     [createCompany.rejected]: (state, { payload } ) => {

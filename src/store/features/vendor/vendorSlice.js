@@ -89,7 +89,7 @@ const vendorSlice = createSlice({
       state.isLoading = true;
     },
     [createVendor.fulfilled]: (state, { payload }) => {
-      state.data = [payload]
+      state.data = [payload];
       state.isSuccess = true;
     },
     [createVendor.rejected]: (state, { payload }) => {
@@ -101,7 +101,7 @@ const vendorSlice = createSlice({
       state.isLoading = true;
     },
     [updateVendor.fulfilled]: (state, { payload }) => {
-      state.data = [payload]
+      state.data = [payload];
       state.isSuccess = true;
     },
     [updateVendor.rejected]: (state, { payload } ) => {

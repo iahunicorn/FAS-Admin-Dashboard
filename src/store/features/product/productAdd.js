@@ -24,10 +24,10 @@ const ProductAdd = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSuccess = useSelector((state) => state.product.isSuccess)
-  const productData = useSelector((state) => state.product.data)
+  ///const productData = useSelector((state) => state.product.data)
   const [addRequestStatus, setAddRequestStatus] = useState(isSuccess)
 
-  console.log({ addRequestStatus, productData })
+  console.log({ addRequestStatus })
 
   //console.log({ isSuccess, customerData })
 
@@ -62,7 +62,7 @@ const ProductAdd = () => {
   //Form Validation 
   const [validated, setValidated] = useState(false)
   
-  const canSave = [product_name, company_id, sku].every(Boolean) && addRequestStatus === true;
+  const canSave = [product_name, category, sku].every(Boolean) && addRequestStatus === true;
   
   const onSavePostClicked = () => {  
     if (canSave) {
@@ -401,7 +401,6 @@ const ProductAdd = () => {
                 id="eff_start_date"
                 locale="en-US" 
                 footer
-                onChange={(e) => setEffStartDate(e.target.value)}
               />
              </CCol>
              <CCol md={4}>
@@ -410,7 +409,6 @@ const ProductAdd = () => {
                 id="eff_end_date"
                 locale="en-US" 
                 footer
-                onChange={(e) => setEffEndDate(e.target.value)}
               />
              </CCol>
              <CCol xs={12}>
