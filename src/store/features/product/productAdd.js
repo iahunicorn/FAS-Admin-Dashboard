@@ -278,7 +278,7 @@ const ProductAdd = () => {
               <CFormInput
                  label="Packaging Length" 
                  type="text"
-                 id="packakging_length"
+                 id="packaging_length"
                  feedbackValid="Looks good!"
                  onChange={(e) => setPackagingLength(e.target.value)}
                />
@@ -287,7 +287,7 @@ const ProductAdd = () => {
               <CFormInput
                  label="Packaging Width" 
                  type="text"
-                 id="packakging_width"
+                 id="packaging_width"
                  feedbackValid="Looks good!"
                  onChange={(e) => setPackagingWidth(e.target.value)}
                />
@@ -296,7 +296,7 @@ const ProductAdd = () => {
               <CFormInput
                  label="Packaging Height" 
                  type="text"
-                 id="packakging_height"
+                 id="packaging_height"
                  feedbackValid="Looks good!"
                  onChange={(e) => setPackagingHeight(e.target.value)}
                />

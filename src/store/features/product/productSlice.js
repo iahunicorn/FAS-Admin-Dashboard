@@ -19,7 +19,7 @@ export const getProducts = createAsyncThunk(
   async () => {
     return await axiosInstance.get('/items/product/')
     .then((res) => res.data.data)
-    .catch((error) => error.message)
+    .catch((error)=>console.log( error.response.request._response))
 });
 
 

@@ -42,7 +42,7 @@ const UserUpdate = () => {
 
   //Dispatch Actions
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.userDim.data);
+  const data = useSelector((state) => state.user.data);
 
   useEffect(() => {
       dispatch(getUserById({ id: userid }));
