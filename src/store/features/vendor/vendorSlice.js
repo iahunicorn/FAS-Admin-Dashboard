@@ -6,12 +6,13 @@ const vendorAdapter = createEntityAdapter();
 
 //Initial State
 const initialState = {
+  //data: {},
   data: [],
-  isSuccess: false,
+  userTours: [],
+  currentCompanyId: 1,
+  message: "",
   isLoading: false,
-  message: null,
-  isUpdate: false,
-  id: null,
+  isSuccess: false,
 }
 
 export const getVendors = createAsyncThunk(
@@ -20,12 +21,12 @@ export const getVendors = createAsyncThunk(
     return await axiosInstance.get('/items/vendor/')
     .then((res) => res.data.data)
     .catch((error) => error.message)
-});
-
+  }
+);
 
 export const getVendorById = createAsyncThunk(
   "vendor/getVendorById", 
-  async ({id}) => {
+  async (id) => {
     //Fetch vendor by ID
     return await axiosInstance
       .get(`/items/vendor/${id}`)
@@ -36,19 +37,25 @@ export const getVendorById = createAsyncThunk(
 
 export const createVendor = createAsyncThunk(
   "vendor/createVendor", 
-  async (payload) => {
+  async ({ updatedData, navigate }, { rejectWithValue }) => {
     return await axiosInstance
-      .post(`items/vendor/`, payload)
-      .then((res)=>res.data.data)
-      .catch((error)=>console.log( error.response.request._response))
+      .post(`items/vendor/`, updatedData)
+      .then((res) => { 
+        res.data.data 
+        navigate("/vendor");
+      })
+      .catch((error) => {
+        rejectWithValue(error.response.data);
+        console.log(error.response.request._response);
+      })
   }
 );
 
 export const updateVendor = createAsyncThunk(
   "vendor/updateVendor", 
-  async (payload) => {
+  async ({ id, updatedData, toast, navigate }, { rejectWithValue }) => {
     return await axiosInstance
-      .post(`items/vendor/`, payload)
+      .put(`items/vendor/${id}`, {payload})
       .then((res)=>res.data.data)
       .catch((error)=>console.log( error.response.request._response))
   }
@@ -103,6 +110,19 @@ const vendorSlice = createSlice({
     [updateVendor.fulfilled]: (state, { payload }) => {
       state.data = [payload];
       state.isSuccess = true;
+      
+      const {
+        arg: { id },
+      } = action.meta;
+      
+      if (id) {
+        state.userTours = state.userTours.map((item) =>
+          item._id === id ? action.payload : item
+        );
+        state.tours = state.tours.map((item) =>
+          item._id === id ? action.payload : item
+        );
+      }
     },
     [updateVendor.rejected]: (state, { payload } ) => {
       state.isLoading = false;

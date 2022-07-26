@@ -90,7 +90,7 @@ const routes = [
   { path: '/customer/:customerid', exact: true, name: 'Update Customer', element: CustomerUpdateForm },
   { path: '/vendors', name: 'All Vendors', element: VendorList },
   { path: '/vendor/add', name: 'Add New Vendor', element: VendorAddForm },
-  { path: '/vendor/:vendorid', name: 'Update Vendor', element: VendorUpdateForm },
+  { path: '/vendor/:id', name: 'Update Vendor', element: VendorUpdateForm },
   { path: '/products', name: 'All Products', element: ProductList },
   { path: '/product/add', name: 'Add New Product', element: ProductAddForm },
   { path: '/product/:productid', exact: true, name: 'Update Product', element: ProductUpdateForm },

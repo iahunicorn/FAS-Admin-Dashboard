@@ -17,7 +17,7 @@ import {
   CRow,
   CHeader,
   CHeaderText,
-} from '@coreui/react-pro'
+} from '@coreui/react-pro';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserById } from 'src/store/features/user/userSlice';
 import { useParams } from 'react-router-dom';

@@ -8,9 +8,16 @@ const VendorTable = () => {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.vendor.data)
+  
   useEffect(() => {
     dispatch(getVendors())
   }, [])
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this vendor?")) {
+      dispatch(deleteVendor(id));
+    }
+  };
 
   console.log(data);
 
@@ -106,7 +113,7 @@ const VendorTable = () => {
                       <CButton size="sm" color="info" href={`/vendor/${item.vendor_id}`}>
                         View / Update
                       </CButton>
-                      <CButton size="sm" color="danger" className="ml-1" href={`/vendor/delete/${item.vendor_id}`}>
+                      <CButton size="sm" color="danger" className="ml-1" href={`/vendor/delete/${item.vendor_id}`} onClick={() => handleDelete(item.vendor_id)}>
                         Delete
                       </CButton>
                     </CCardBody>
