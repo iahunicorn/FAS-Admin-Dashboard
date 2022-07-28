@@ -15,7 +15,7 @@ import {
   CFormFeedback,
 } from '@coreui/react-pro';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVendorById, updateVendor, selectAllVendors } from './vendorSlice';
+import { createVendor, updateVendor } from './vendorSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
@@ -25,8 +25,7 @@ const VendorUpdate = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
-    const { isSuccess, data, message } = useSelector((state) => ({...state.vendor,}));
-
+    const { isSuccess, vendorsByCompanyId, message } = useSelector((state) => ({...state.vendor,}));
 
     //Get All Data
     const initialState = { 
@@ -64,12 +63,14 @@ const VendorUpdate = () => {
     /* Only look for vendors of logged company (user) */
     useEffect(() => {
       if(id) {
-          const singleRecord = companyId.find((tour) => data._id === id);
-          console.log(singleRecord);
-          setRecord({ ...singleRecord });
+         const singleRecord = find((s) => s.vendor_id === id);
+         console.log({singleRecord});
+         setRecord({ ...singleRecord });
       }
     }, [id]);
     
+    //Form Validation 
+    const [validated, setValidated] = useState(false);
 
     //Set Fields
     const [record, setRecord] = useState(initialState);
@@ -104,10 +105,9 @@ const VendorUpdate = () => {
             date_updated
           } = record;
 
-    //Form Validation 
-    const [validated, setValidated] = useState(false);
 
-    console.log({ record, id, isSuccess });
+
+    console.log({ vendorsByCompanyId, record, id, isSuccess,  message });
 
     /* Submit Form
     const handleSubmit = (e) => {
@@ -129,7 +129,7 @@ const VendorUpdate = () => {
       }
 
       if (vendor_name && email && vendor_type) {
-        const updatedVendorData = { ...record, name: user?.result?.name };
+        const updatedVendorData = { ...record, vendor_name: vendor_name?.result?.vendor_name };
 
         if (!id) {
           dispatch(createVendor({ updatedVendorData, navigate }));
@@ -201,7 +201,7 @@ const VendorUpdate = () => {
                     id="company_id"
                     name="company_id"
                     feedbackValid="Looks good!"
-                    value={data.company_id || ""}
+                    value={company_id || ""}
                     onChange={onInputChange}
                     disabled
                   />
@@ -213,7 +213,7 @@ const VendorUpdate = () => {
                     id="vendor_name"
                     name="vendor_name"
                     feedbackValid="Looks good!"
-                    value={data.vendor_name || ""}
+                    value={vendor_name || ""}
                     onChange={onInputChange}
                     readOnly={false}
                     required
@@ -235,7 +235,7 @@ const VendorUpdate = () => {
                     id="email"
                     name="email"
                     feedbackValid="Looks good!"                 
-                    value={data.email || ""}
+                    value={email || ""}
                     onChange={onInputChange}
                     required
                   />
@@ -249,7 +249,7 @@ const VendorUpdate = () => {
                         id="phone_number"
                         name="phone_number"
                         feedbackValid="Looks good!"
-                        value={data.phone_number || null}
+                        value={phone_number || null}
                         onChange={onInputChange}
                     />
                   </CInputGroup>
@@ -263,7 +263,7 @@ const VendorUpdate = () => {
                         id="mobile_number"
                         name="mobile_number"
                         feedbackValid="Looks good!"
-                        value={data.mobile_number || null}
+                        value={mobile_number || null}
                         onChange={onInputChange}
                     />
                   </CInputGroup>
@@ -275,7 +275,7 @@ const VendorUpdate = () => {
                     id="address1"
                     name="address1"
                     feedbackValid="Looks good!"
-                    value={data.address1 || null}
+                    value={address1 || null}
                     onChange={onInputChange}
                     required
                   />
@@ -287,7 +287,7 @@ const VendorUpdate = () => {
                     id="address2"
                     name="address2"
                     feedbackValid="Looks good!"
-                    value={data.address2 || null}
+                    value={address2 || null}
                     onChange={onInputChange}
                   />
                   </CCol>
@@ -351,7 +351,7 @@ const VendorUpdate = () => {
                         aria-label="First name" 
                         type="text" 
                         placeholder="First Name" 
-                        value={data.contact_person_first_name}
+                        value={contact_person_first_name}
                         name="contact_person_first_name"
                         feedbackValid="Looks good!"
                         onChange={onInputChange}
@@ -361,7 +361,7 @@ const VendorUpdate = () => {
                         aria-label="Last name" 
                         type="text" 
                         placeholder="Last Name" 
-                        value={data.contact_person_last_name}
+                        value={contact_person_last_name}
                         name="contact_person_last_name"
                         feedbackValid="Looks good!"
                         onChange={onInputChange}
@@ -377,7 +377,7 @@ const VendorUpdate = () => {
                     type="text"
                     id="bank_name"
                     name="bank_name"
-                    value={data.bank_name}
+                    value={bank_name}
                     feedbackValid="Looks good!"
                     onChange={onInputChange}
                   />
@@ -388,7 +388,7 @@ const VendorUpdate = () => {
                     type="text"
                     id="bank_account_number"
                     name="bank_account_number"
-                    value={data.bank_account_number}
+                    value={bank_account_number}
                     feedbackValid="Looks good!"
                     onChange={onInputChange}
                   />

@@ -6,6 +6,7 @@ import vendorSlice from "./store/features/vendor/vendorSlice";
 import productSlice from "./store/features/product/productSlice";
 import companySlice from "./store/features/company/companySlice";
 import userSlice from "./store/features/user/userSlice";
+import authSlice from "./store/common/authSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     vendor: vendorSlice,
     product: productSlice,
     user: userSlice,
+    auth: authSlice,
   }
 })
 

@@ -37,7 +37,7 @@ const AppHeader = () => {
     : document.body.classList.remove('dark-theme')
 
   const sidebarShow = useSelector((state) => state.coreuistate.sidebarShow)
-  const asideShow = useSelector((state) => state.coreuistate.asideShow)
+  //sconst asideShow = useSelector((state) => state.coreuistate.asideShow)
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -90,18 +90,10 @@ const AppHeader = () => {
         </CHeaderNav>
         <CHeaderNav>
           <AppHeaderDropdownNotif />
-          <AppHeaderDropdownTasks />
-          <AppHeaderDropdownMssg />
         </CHeaderNav>
         <CHeaderNav className="ms-3 me-4">
           <AppHeaderDropdown />
         </CHeaderNav>
-        <CHeaderToggler
-          className="px-md-0 me-md-3"
-          onClick={() => dispatch({ type: 'set', asideShow: !asideShow })}
-        >
-          <CIcon icon={cilApplicationsSettings} size="lg" />
-        </CHeaderToggler>
       </CContainer>
       <CHeaderDivider />
       <CContainer fluid>

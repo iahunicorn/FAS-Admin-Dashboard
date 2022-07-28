@@ -3,15 +3,15 @@ import { axiosInstance } from 'src/store/middleware/directus';
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ formValue, navigate ,toast }, { rejectWithValue }) => {
+  async ({ formValue, navigate, toast }, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post("/users/signin", formValue);
+      const response = await axiosInstance.post("/users/", formValue);
       toast.success("Login Successfully");
-      // navigate("/dashboard");
-      return response.data;
+      navigate("/dashboard");
+      return response.data.data;
     } catch (err) {
       console.log('13', err);
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(error.response.request._response);
     }
   }
 );
@@ -20,17 +20,15 @@ export const register = createAsyncThunk(
   "auth/register",
   async ({ formValue, navigate, toast }, { rejectWithValue }) => {
     try {
-      const response = await  axiosInstance.post("/users/signup", formValue);
+      const response = await  axiosInstance.post("/users/", formValue);
       toast.success("Register Successfully");
-      // navigate("/");
+      navigate("/");
       return response.data;
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(error.response.request._response);
     }
   }
 );
-
-
 
 const authSlice = createSlice({
   name: "auth",
